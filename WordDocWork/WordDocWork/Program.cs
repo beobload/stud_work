@@ -21,9 +21,9 @@ namespace WordDocWork
         static void Main(string[] args)
         {
 
-            string sourcePath = @"f:\stud_work\шаблон.rtf";//путь до исходного шаблона
-            string distPath = @"f:\stud_work\result.rtf";//путь до выходного файла
-            string csvPath = @"f:\stud_work\data.csv";//путь до csv файла для создания таблицы
+            string sourcePath = @"w:\stud_work\шаблон.rtf";//путь до исходного шаблона
+            string distPath = @"w:\stud_work\result.rtf";//путь до выходного файла
+            string csvPath = @"w:\stud_work\data.csv";//путь до csv файла для создания таблицы
 
             //список закладок
             string[] templateStringList =
@@ -36,6 +36,12 @@ namespace WordDocWork
                 "[*таблица первая*]"///5
                 };
 
+            var application = new Application();
+            application.Visible = true;
+
+            var document = application.Documents.Open(sourcePath);
+
+            document.SaveAs2(distPath);
         }
     }
 }
