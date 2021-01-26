@@ -42,6 +42,9 @@ namespace WordDocWork
             var document = application.Documents.Open(sourcePath);
 
             Paragraph prevParagraph = null;
+
+            Object missing = System.Type.Missing;
+
             foreach (Paragraph paragraph in document.Paragraphs)
             {
                 for (int i = 0; i < templateStringList.Length; i++)
@@ -58,6 +61,14 @@ namespace WordDocWork
                                     paragraph.Format.SpaceAfter = 12;
                                     paragraph.Range.Font.Bold = 1;
                                     paragraph.Range.HighlightColorIndex = 0;
+
+                                    _sectionNumber++;
+                                    string replaceString = _sectionNumber.ToString();
+
+                                    paragraph.Range.Find.Execute(templateStringList[i],
+                                        ref missing, ref missing, ref missing, ref missing, ref missing, ref missing,
+                                        0, ref missing, replaceString, 2, ref missing, ref missing,
+                                        ref missing, ref missing);
                                 }
                                 break;
                             case 1:
@@ -73,21 +84,53 @@ namespace WordDocWork
                                         prevParagraph.Format.SpaceBefore = 12;
                                         prevParagraph.Alignment = WdParagraphAlignment.wdAlignParagraphCenter;
                                     }
+
+                                    _pictureNumber++;
+                                    string replaceString = "Рисунок " + _sectionNumber.ToString() + "." + _pictureNumber.ToString() + " -";
+
+                                    paragraph.Range.Find.Execute(templateStringList[i],
+                                        ref missing, ref missing, ref missing, ref missing, ref missing, ref missing,
+                                        0, ref missing, replaceString, 2, ref missing, ref missing,
+                                        ref missing, ref missing);
                                 }
                                 break;
                             case 2:
                                 {
+                                    paragraph.Range.HighlightColorIndex = 0;
 
+                                    string replaceString = _sectionNumber.ToString() + "." + (_pictureNumber + 1).ToString();
+
+                                    paragraph.Range.Find.Execute(templateStringList[i],
+                                        ref missing, ref missing, ref missing, ref missing, ref missing, ref missing,
+                                        0, ref missing, replaceString, 2, ref missing, ref missing,
+                                        ref missing, ref missing);
                                 }
                                 break;
                             case 3:
                                 {
 
+                                    paragraph.Range.HighlightColorIndex = 0;
+
+                                    string replaceString = _sectionNumber.ToString() + "." + _pictureNumber.ToString();
+
+                                    paragraph.Range.Find.Execute(templateStringList[i],
+                                        ref missing, ref missing, ref missing, ref missing, ref missing, ref missing,
+                                        0, ref missing, replaceString, 2, ref missing, ref missing,
+                                        ref missing, ref missing);
                                 }
                                 break;
                             case 4:
                                 {
 
+                                    paragraph.Range.HighlightColorIndex = 0;
+
+                                    _tableNumber++;
+                                    string replaceString = _sectionNumber.ToString() + "." + _tableNumber.ToString();
+
+                                    paragraph.Range.Find.Execute(templateStringList[i],
+                                        ref missing, ref missing, ref missing, ref missing, ref missing, ref missing,
+                                        0, ref missing, replaceString, 2, ref missing, ref missing,
+                                        ref missing, ref missing);
                                 }
                                 break;
                             case 5:
@@ -95,7 +138,6 @@ namespace WordDocWork
 
                                 }
                                 break;
-
                         }
                     }
                 }
