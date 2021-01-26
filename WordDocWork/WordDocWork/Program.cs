@@ -108,7 +108,6 @@ namespace WordDocWork
                                 break;
                             case 3:
                                 {
-
                                     paragraph.Range.HighlightColorIndex = 0;
 
                                     string replaceString = _sectionNumber.ToString() + "." + _pictureNumber.ToString();
@@ -135,7 +134,46 @@ namespace WordDocWork
                                 break;
                             case 5:
                                 {
+                                    paragraph.Range.InsertParagraphBefore();
+                                    paragraph.Range.InsertBefore("TABLA");
+                                    paragraph.Alignment = WdParagraphAlignment.wdAlignParagraphCenter;
+                                    paragraph.Range.Font.Name = "Times New Roman";
+                                    paragraph.Range.Font.Size = 15;
+                                    paragraph.Format.SpaceAfter = 12;
+                                    paragraph.Range.HighlightColorIndex = 0;
 
+                                    application.Selection.Find.Execute(templateStringList[i]);
+                                    var range = application.Selection.Range;
+                                    //range.HighlightColorIndex = 0;
+                                                                        
+                                    string[] listRows = System.IO.File.ReadAllText(csvPath).Split("\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+
+                                    string[] listTitle = listRows[0].Split(";,".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+
+                                    var wordTable = document.Tables.Add(range, listRows.Length, listTitle.Length);
+
+                                    wordTable.Range.Font.Name = "Times New Roman";
+                                    wordTable.Range.Font.Size = 11;
+                                    wordTable.Range.Columns.DistributeWidth();
+                                    wordTable.Range.Borders[WdBorderType.wdBorderLeft].LineStyle = WdLineStyle.wdLineStyleDouble;
+                                    wordTable.Range.Borders[WdBorderType.wdBorderRight].LineStyle = WdLineStyle.wdLineStyleTriple;
+                                    wordTable.Range.Borders[WdBorderType.wdBorderTop].LineStyle = WdLineStyle.wdLineStyleEmboss3D;
+                                    wordTable.Range.Borders[WdBorderType.wdBorderBottom].LineStyle = WdLineStyle.wdLineStyleDoubleWavy;
+                                    wordTable.Range.Borders.InsideLineStyle = WdLineStyle.wdLineStyleDashDot;
+                                                                        
+                                    for (var k = 0; k < listTitle.Length; k++)
+                                    {
+                                        wordTable.Cell(1, k + 1).Range.Text = listTitle[k].ToString();
+                                    }
+
+                                    for (var j = 1; j < listRows.Length; j++)
+                                    {
+                                        string[] listValues = listRows[j].Split(";,".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+                                        for (var k = 0; k < listValues.Length; k++)
+                                        {
+                                            wordTable.Cell(j + 1, k + 1).Range.Text = listValues[k].ToString();
+                                        }
+                                    }                                                                        
                                 }
                                 break;
                         }
