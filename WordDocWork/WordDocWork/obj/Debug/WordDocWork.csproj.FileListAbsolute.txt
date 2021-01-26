@@ -1,0 +1,8 @@
+W:\stud_work\stud_work\WordDocWork\WordDocWork\bin\Debug\WordDocWork.exe.config
+W:\stud_work\stud_work\WordDocWork\WordDocWork\bin\Debug\WordDocWork.exe
+W:\stud_work\stud_work\WordDocWork\WordDocWork\bin\Debug\WordDocWork.pdb
+W:\stud_work\stud_work\WordDocWork\WordDocWork\obj\Debug\WordDocWork.csprojAssemblyReference.cache
+W:\stud_work\stud_work\WordDocWork\WordDocWork\obj\Debug\WordDocWork.csproj.ResolveComReference.cache
+W:\stud_work\stud_work\WordDocWork\WordDocWork\obj\Debug\WordDocWork.csproj.CoreCompileInputs.cache
+W:\stud_work\stud_work\WordDocWork\WordDocWork\obj\Debug\WordDocWork.exe
+W:\stud_work\stud_work\WordDocWork\WordDocWork\obj\Debug\WordDocWork.pdb
